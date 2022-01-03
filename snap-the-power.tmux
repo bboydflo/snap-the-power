@@ -4,36 +4,29 @@
 #  Created: 2021-31-12
 #
 # Inspired by / Copy of https://github.com/wfxr/tmux-power
-#
-# Colors (Ayu Dark)
-# colors:
-#   # Default colors
-#   primary:
-#     background: '0x0A0E14'
-#     foreground: '0xB3B1AD'
-
-#   # Normal colors
-#   normal:
-#     black:   '0x01060E'
-#     red:     '0xEA6C73'
-#     green:   '0x91B362'
-#     yellow:  '0xF9AF4F'
-#     blue:    '0x53BDFA'
-#     magenta: '0xFAE994'
-#     cyan:    '0x90E1C6'
-#     white:   '0xC7C7C7'
-
-#   # Bright colors
-#   bright:
-#     black:   '0x686868'
-#     red:     '0xF07178'
-#     green:   '0xC2D94C'
-#     yellow:  '0xFFB454'
-#     blue:    '0x59C2FF'
-#     magenta: '0xFFEE99'
-#     cyan:    '0x95E6CB'
-#     white:   '0xFFFFFF'
 #===============================================================================
+
+# ayu color palette
+AYU_PRIMARY_BG=#0A0E14
+AYU_PRIMARY_FG=#B3B1AD
+
+AYU_PRIMARY_BLACK=#01060E
+AYU_PRIMARY_RED=#EA6C73
+AYU_PRIMARY_GREEN=#91B362
+AYU_PRIMARY_YELLOW=#F9AF4F
+AYU_PRIMARY_BLUE=#53BDFA
+AYU_PRIMARY_MAGENTA=#FAE994
+AYU_PRIMARY_CYAN=#90E1C6
+AYU_PRIMARY_WHITE=#C7C7C7
+
+AYU_BRIGHT_BLACK=#686868
+AYU_BRIGHT_RED=#F07178
+AYU_BRIGHT_GREEN=#C2D94C
+AYU_BRIGHT_YELLOW=#FFB454
+AYU_BRIGHT_BLUE=#59C2FF
+AYU_BRIGHT_MAGENTA=#FFEE99
+AYU_BRIGHT_CYAN=#95E6CB
+AYU_BRIGHT_WHITE=#FFFFFF
 
 # $1: option
 # $2: default value
@@ -95,34 +88,26 @@ case $TC in
         ;;
 esac
 
-G01=#080808 #232
-G02=#121212 #233
-G03=#1c1c1c #234
+# grays
 G04=#262626 #235
-G05=#303030 #236
-# G06=#3a3a3a #237
 G06=#1E232B # derived from ayu primary background
 G07=#444444 #238
-G08=#4e4e4e #239
-G09=#585858 #240
-G10=#626262 #241
-G11=#6c6c6c #242
 G12=#767676 #243
 
-G13=#0A0E14
-G14=#B3B1AD
-G15=#C7C7C7
+# main colors
+FG="$AYU_PRIMARY_FG"
+BG="$AYU_PRIMARY_BG"
 
-FG="$G14"
-BG="$G13"
+# session widget colors
+SESSION_BG="$AYU_PRIMARY_GREEN"
+SESSION_FG="$AYU_PRIMARY_BLACK"
 
-SESSION_BG=#91B362
-SESSION_FG=#01060E
+# date widget colors
+DATE_BG="$AYU_PRIMARY_RED"
+DATE_FG="$AYU_PRIMARY_BG"
 
-DATE_BG=#EA6C73
-DATE_FG=#0A0E14
-
-TIME_FG=#53BDFA
+# time widget colors
+TIME_FG="$AYU_BRIGHT_BLUE"
 
 # Status options
 tmux_set status-interval 1
@@ -160,10 +145,9 @@ tmux_set status-left "$SESSION"
 tmux_set status-right-bg "$G04"
 tmux_set status-right-fg "$G12"
 tmux_set status-right-length 150
-RS="\
-#[fg=$G06,bg=$BG]$left_arrow_icon#[fg=$TIME_FG,bg=$G06] $date_icon $date_format#[fg=$BG,bg=$G06,nobold]$left_arrow_icon\
-#[fg=$DATE_BG,bg=$G06]$left_arrow_icon#[fg=$DATE_FG,bg=$DATE_BG] $time_icon $time_format "
-tmux_set status-right "$RS"
+STATUS_LEFT_DATE="#[fg=$G06,bg=$BG]$left_arrow_icon#[fg=$TIME_FG,bg=$G06] $date_icon $date_format#[fg=$BG,bg=$G06,nobold]$left_arrow_icon"
+STATUS_LEFT_TIME="#[fg=$DATE_BG,bg=$BG]$left_arrow_icon#[fg=$DATE_FG,bg=$DATE_BG] $time_icon $time_format "
+tmux_set status-right "$STATUS_LEFT_DATE$STATUS_LEFT_TIME"
 
 # Window status
 tmux_set window-status-format "#[fg=$BG,bg=$G06]$right_arrow_icon #[fg=$G12,bg=$G06,nobold]#I:#W#F #[fg=$G06,bg=$BG]$right_arrow_icon"
@@ -200,4 +184,5 @@ tmux_set message-style "fg=$TC,bg=$BG"
 tmux_set message-command-style "fg=$TC,bg=$BG"
 
 # Copy mode highlight
-tmux_set mode-style "bg=$TC,fg=$FG"
+# tmux_set mode-style "bg=$TC,fg=$FG"
+tmux_set mode-style "bg=red,fg=white,bold"
