@@ -145,7 +145,7 @@ tmux_set status-left "$SESSION"
 tmux_set status-right-bg "$G04"
 tmux_set status-right-fg "$G12"
 tmux_set status-right-length 150
-STATUS_LEFT_DATE="#[fg=$G06,bg=$BG]$left_arrow_icon#[fg=$TIME_FG,bg=$G06] $date_icon $date_format#[fg=$BG,bg=$G06,nobold]$left_arrow_icon "
+STATUS_LEFT_DATE="#[fg=$G06,bg=$BG]$left_arrow_icon#[fg=$TIME_FG,bg=$G06] $date_icon $date_format #[fg=$BG,bg=$G06,nobold]$left_arrow_icon"
 STATUS_LEFT_TIME="#[fg=$DATE_BG,bg=$BG]$left_arrow_icon#[fg=$DATE_FG,bg=$DATE_BG] $time_icon $time_format "
 tmux_set status-right "$STATUS_LEFT_DATE$STATUS_LEFT_TIME"
 
