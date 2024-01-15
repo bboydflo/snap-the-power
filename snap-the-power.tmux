@@ -110,8 +110,9 @@ DATE_FG="$AYU_PRIMARY_BG"
 TIME_FG="$AYU_BRIGHT_BLUE"
 
 # Status options
-tmux_set status-interval 1
 tmux_set status on
+# speed up refresh rate to 1 second
+tmux_set status-interval 1
 
 # Basic status bar colors
 tmux_set status-fg "$FG"
